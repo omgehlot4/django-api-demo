@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
-from webapp import views
-from webapp.views import LoginView, LogoutView
+from rest_framework import routers
+from views import EmployeeViewSet
+
+router = routers.DefaultRouter()
+router.register('',EmployeeViewSet)
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/v1/employee/',include('webapp.urls')),
-    url(r'^api/v1/auth/login',LoginView.as_view()),
-    url(r'^api/v1/auth/logout',LogoutView.as_view())
+    url('',include(router.urls))
 ]
